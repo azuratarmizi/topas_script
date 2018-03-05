@@ -1,0 +1,19 @@
+[Unit]              
+SourcePath=/etc/init.d/banner.sh              
+Description=LSB: A sysV banner init script
+Before=multi-user.target 
+Before=sysfs.service
+After=basic.target
+
+[Service]       
+Type=forking
+TimeoutSec=5min	
+IgnoreSIGPIPE=no	
+KillMode=process	
+GuessMainPID=no	
+RemainAfterExit=yes	
+Restart=no      
+ExecStart=/etc/init.d/banner.sh     
+
+[Install]
+WantedBy=multi-user.target

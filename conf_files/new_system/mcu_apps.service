@@ -1,0 +1,24 @@
+[Unit]
+Description=Topas mcu apps 
+After=secureinc.service
+After=multi-user.target
+Requires=secureinc.service
+StartLimitIntervalSec=0
+
+[Service]
+#Type=forking              
+Restart=yes                   
+#IgnoreSIGPIPE=no             
+#KillMode=process            
+ExecStart=/usr/bin/mcu_apps
+ExecStartPre=/bin/sleep 5                              
+#StandardOutput=syslog+console
+#StandardError=syslog+console 
+#TimeoutStartSec=15           
+#WatchdogSec=10               
+#TimeoutStopSec=10           
+#FailureAction=reboot
+                     
+[Install]                 
+WantedBy=multi-user.target
+

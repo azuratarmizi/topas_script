@@ -1,0 +1,54 @@
+<topas
+    hwdog="OFF"
+    startup_profile="ON">
+    <time
+        timefile="ON"
+        do_not_synchronise_system_time="ON"
+        emergency_shutdown="0"
+        emergency_off="0"
+        hwdog_time="0"
+        shutdown_time="0">
+
+        <initial_system_time  
+           year="2017"
+           month="9"
+           day="1"
+           hour="17"
+           min="15"
+           sec="0"
+        />
+
+    </time>
+
+  <!-- fallback_reset_clear_time="180" -->
+
+  <component name="POS"     file="positioning.service" startedby="systemd" time_src_prio="0" fallback_restart_count_level="3"  fallback_reset_clear_time="0">
+    <profile name="ON"              state="STATE_FULLPOWER" />
+    <profile name="VARIANT_CHANGE"      state="STATE_FULLPOWER" />
+    <profile name="OFF"             state="STATE_OFF" />
+
+    <trace class="ALL_TRACE_CLASSES"    level="LOG_DEBUG" />
+  </component>
+
+  <component name="NETWORK" file="/usr/bin/vehicle_network -f/data/configs/network_config.xml" watchdog="0">
+    <profile name="ON"                  state="STATE_FULLPOWER" />
+    <profile name="OFF"                 state="STATE_OFF" />
+    <profile name="VARIANT_CHANGE"      state="STATE_OFF" />
+    <trace class="ALL_TRACE_CLASSES"    level="LOG_DEBUG" />
+    <!-- <pre exec="/usr/bin/dtsi_set_initial_canconfig.sh" timeout="5"/> -->
+  </component>
+
+   <!-- start application, which uses the server, at last -->
+   <!--
+   <component name="API_TEST" file="/usr/bin/topas_api_test -t/var/log/stdout_api_test.txt" watchdog="0">
+    <profile name="ON"      state="STATE_FULLPOWER" />
+    <profile name="STANDBY" state="STATE_LOWPOWER" />
+    <profile name="VOID"    state="STATE_OFF" />
+    <trace class="ALL_TRACE_CLASSES"           level="LOG_DEBUG" />
+    <trace class="TR_CLASS_BOSCH_API_USER_01"  level="LOG_DEBUG" />
+    <trace class="TR_CLASS_BOSCH_API_USER_02"  level="LOG_INFO" />
+    <trace class="TR_CLASS_BOSCH_API_USER_03"  level="LOG_ERR" />
+  </component>
+  -->
+</topas>
+

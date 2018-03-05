@@ -1,0 +1,21 @@
+[Unit]              
+SourcePath=/etc/init.d/usb
+Description=LSB: A sysV android usb gadget script
+After=basic.target 
+After=read-only-rootfs-hook.service
+After=checkroot.service
+Before=find_partitions.service                
+
+[Service]       
+Type=forking		
+Restart=no		
+TimeoutSec=5min		
+IgnoreSIGPIPE=no		
+KillMode=process		
+GuessMainPID=no		
+RemainAfterExit=yes		
+ExecStart=/etc/init.d/usb start
+ExecStop=/etc/init.d/usb stop
+
+[Install]
+WantedBy=multi-user.target

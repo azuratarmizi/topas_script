@@ -1,0 +1,11 @@
+<!DOCTYPE can SYSTEM "canconfig.dtd">
+<can logsize="1000">
+
+   <bus number="0" logging="1">
+      <controller type="SECUREINC" port="8989" />
+      <transceiver type="UNKNOWN"/>
+      <busoff type="TIMED" limit="5" time="100"/> ?? 
+   </bus>
+
+</can>
+

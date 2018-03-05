@@ -1,0 +1,24 @@
+[Unit]              
+SourcePath=/etc/init.d/start_QCMAP_ConnectionManager_le
+Description=LSB: A sysV start QCMAP connection manager script
+After=basic.target 
+After=hostname.service
+Before=start_qti_le.service
+Before=bootmisc.service
+#Before=netmgrd.service
+Before=multi-user.target
+
+[Service]       
+Environment="PATH=/usr/local/sbin:/usr/sbin:/usr/local/bin:/usr/bin:/bin:/sbin"
+Type=forking
+Restart=no
+TimeoutSec=5min
+IgnoreSIGPIPE=no
+KillMode=process
+GuessMainPID=no
+RemainAfterExit=yes
+ExecStart=/etc/init.d/start_QCMAP_ConnectionManager_le start
+ExecStop=/etc/init.d/start_QCMAP_ConnectionManager_le stop
+
+[Install]
+WantedBy=multi-user.target

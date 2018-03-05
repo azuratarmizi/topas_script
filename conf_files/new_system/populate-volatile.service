@@ -1,0 +1,21 @@
+[Unit]              
+SourcePath=/etc/init.d/populate-volatile.sh
+Description=LSB: A sysV populate volatile  script
+After=local-fs.target 
+After=firmware-links.service
+Before=start_ipacm_perf_le.service
+Before=devpts.service
+Before=multi-user.target
+
+[Service]       
+Type=forking		
+Restart=no		
+TimeoutSec=5min		
+IgnoreSIGPIPE=no		
+KillMode=process		
+GuessMainPID=no		
+RemainAfterExit=yes		
+ExecStart=/etc/init.d/populate-volatile.sh
+
+[Install]
+WantedBy=multi-user.target

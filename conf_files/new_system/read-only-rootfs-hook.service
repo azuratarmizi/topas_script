@@ -1,0 +1,22 @@
+[Unit]              
+SourcePath=/etc/init.d/read-only-rootfs-hook
+Description=LSB: A sysV read only rootfs  script
+After=local-fs.target 
+After=bootlogd.service
+After=checkroot.service
+Before=usb.service 
+Before=multi-user.target
+
+[Service]       
+Type=forking
+Restart=no
+TimeoutSec=5min
+IgnoreSIGPIPE=no
+KillMode=process
+GuessMainPID=no
+RemainAfterExit=yes
+ExecStart=/etc/init.d/read-only-rootfs-hook.sh start
+ExecStop=/etc/init.d/read-only-rootfs-hook.sh stop
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,26 @@
+[Unit]              
+SourcePath=/etc/init.d/qmuxd
+Description=LSB: A sysV qualcomm qmuxd script
+#After=time_serviced.service
+#After=init_irsc_utils.service
+After=start_embms_le.service
+After=mssboot.service
+Before=thermal-engine.service
+#Before=data-init.service
+Before=multi-user.target
+
+[Service]       
+Environment="PATH=/usr/local/sbin:/usr/sbin:/usr/local/bin:/usr/bin:/bin:/sbin"
+Type=forking
+Restart=no
+TimeoutSec=5min
+IgnoreSIGPIPE=no
+KillMode=process
+GuessMainPID=no
+RemainAfterExit=yes
+ExecStart=/etc/init.d/qmuxd start
+ExecStop=/etc/init.d/qmuxd stop
+
+[Install]
+WantedBy=multi-user.target
+

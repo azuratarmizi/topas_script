@@ -1,0 +1,22 @@
+[Unit]              
+SourcePath=/etc/init.d/stop-bootlogd     
+Description=LSB: A sysV stop bootlogd script
+After=rmnologin.service
+After=start_fs-scrub-daemon.service
+After=start_pdcd.service
+Before=topas-dbus-session.service
+Before=multi-user.target
+
+[Service]       
+Type=forking
+Restart=no
+TimeoutSec=5min
+IgnoreSIGPIPE=no
+KillMode=process
+GuessMainPID=no
+RemainAfterExit=yes
+ExecStart=/etc/init.d/stop-bootlogd start
+ExecStop=/etc/init.d/stop-bootlogd stop
+
+[Install]
+WantedBy=multi-user.target

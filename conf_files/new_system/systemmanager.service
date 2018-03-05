@@ -1,0 +1,24 @@
+# start the system manager by systemd
+#
+#
+
+[Unit]
+Description=Topas System Manager
+After=topas-dbus-session.service 
+After=secureinc.service
+Requires=topas-dbus-session.service
+Requires=secureinc.service
+After=multi-user.target
+
+[Service]
+ExecStart=/usr/bin/system_manager
+EnvironmentFile=/var/tmp/dbus_session.conf
+StandardOutput=syslog+console
+StandardError=syslog+console
+#TimeoutStartSec=15
+#WatchdogSec=10
+TimeoutStopSec=10
+#FailureAction=reboot
+
+[Install]
+WantedBy=multi-user.target

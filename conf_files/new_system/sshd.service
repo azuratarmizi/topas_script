@@ -1,0 +1,21 @@
+[Unit]              
+SourcePath=/etc/init.d/sshd
+Description=LSB: A sysV sshd script
+After=networking.service
+Before=chgrp-diag.service
+Before=hwclock.service
+Before=multi-user.target
+
+[Service]       
+Type=forking		
+Restart=no		
+TimeoutSec=5min		
+IgnoreSIGPIPE=no		
+KillMode=process		
+GuessMainPID=no		
+RemainAfterExit=yes		
+ExecStart=/etc/init.d/sshd start
+ExecStop=/etc/init.d/sshd stop
+
+[Install]
+WantedBy=multi-user.target

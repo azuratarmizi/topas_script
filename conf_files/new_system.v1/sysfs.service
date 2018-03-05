@@ -1,0 +1,18 @@
+[Unit]              
+SourcePath=/etc/init.d/sysfs.sh              
+Description=LSB: A sysV sysfs init script
+After=local-fs.target banner.service
+Before=mdev.service default.target                
+
+[Service]       
+Type=forking
+Restart=no  
+TimeoutSec=5min
+IgnoreSIGPIPE=no
+KillMode=process
+GuessMainPID=no
+RemainAfterExit=yes
+ExecStart=/etc/init.d/sysfs.sh     
+
+[Install]
+WantedBy=multi-user.target

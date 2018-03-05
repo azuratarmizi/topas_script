@@ -1,0 +1,19 @@
+[Unit]              
+Description=LSB: A sysV alignment script
+After=local-fs.target 
+After=mountall.service
+Before=checkroot.service                
+Before=multi-user.target
+
+[Service]       
+Type=forking
+Restart=no		
+TimeoutSec=5min		
+IgnoreSIGPIPE=no		
+KillMode=process		
+GuessMainPID=no		
+RemainAfterExit=yes		
+ExecStart=/etc/init.d/alignment.sh
+
+[Install]
+WantedBy=multi-user.target

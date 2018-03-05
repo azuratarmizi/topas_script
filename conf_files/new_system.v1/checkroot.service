@@ -1,0 +1,19 @@
+[Unit]              
+Description=LSB: A sysV checkroot script
+After=systemd-udevd.service 
+After=aligment.service
+Before=bootlogd.service                
+Before=multi-user.target
+
+[Service]       
+Type=forking	
+Restart=no	
+TimeoutSec=5min	
+IgnoreSIGPIPE=no	
+KillMode=process	
+GuessMainPID=no	
+RemainAfterExit=yes	
+ExecStart=/etc/init.d/checkroot.sh
+
+[Install]
+WantedBy=multi-user.target

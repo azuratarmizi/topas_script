@@ -1,0 +1,17 @@
+[Unit]
+Description=Topas Secure Inc
+After=topas-dbus-session.service
+After=multi-user.target
+
+[Service]
+ExecStart=/usr/bin/secure_inc_topas3
+StandardOutput=syslog+console
+StandardError=syslog+console
+#TimeoutStartSec=15
+#WatchdogSec=10
+TimeoutStopSec=10
+#FailureAction=reboot
+
+[Install]
+WantedBy=multi-user.target
+

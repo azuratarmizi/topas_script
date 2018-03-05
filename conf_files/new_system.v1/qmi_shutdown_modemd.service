@@ -1,0 +1,22 @@
+[Unit]              
+SourcePath=/etc/init.d/qmi_shutdown_modemd
+Description=LSB: A sysV start qmi_shutdown_modemd
+After=basic.target 
+After=netmgrd.service
+Before=data-init.service
+Before=multi-user.target
+
+[Service]       
+#Environment="PATH=/usr/local/sbin:/usr/sbin:/usr/local/bin:/usr/bin:/bin:/sbin"
+Type=forking
+Restart=no
+TimeoutSec=5min
+IgnoreSIGPIPE=no
+KillMode=process
+GuessMainPID=no
+RemainAfterExit=yes
+ExecStart=/etc/init.d/qmi_shutdown_modemd start
+ExecStop=/etc/init.d/qmi_shutdown_modemd stop
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,20 @@
+[Unit]
+Description=TOPAS Data Call Service
+After=topas-dbus-session.service
+After=multi-user.target
+Before=systemmanager.service
+#Requires=mcu_modem_sync.service
+StartLimitIntervalSec=0
+
+
+[Service]
+Type=simple
+#Restart=once
+ExecStart=/usr/bin/tof_pdp_connect -c
+StandardOutput=syslog+console
+StandardError=syslog+console
+
+
+[Install]
+WantedBy=multi-user.target
+

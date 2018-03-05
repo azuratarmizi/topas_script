@@ -1,0 +1,20 @@
+[Unit]              
+SourcePath=/etc/init.d/dmesg.sh
+Description=LSB: A sysV dmesg script
+After=devpts.service
+Before=start_ipacmdiag_le.service
+Before=hostname.service                
+Before=multi-user.target
+
+[Service]       
+Type=forking
+Restart=no
+TimeoutSec=5min
+IgnoreSIGPIPE=no
+KillMode=process
+GuessMainPID=no
+RemainAfterExit=yes
+ExecStart=/etc/init.d/dmesg.sh
+
+[Install]
+WantedBy=multi-user.target

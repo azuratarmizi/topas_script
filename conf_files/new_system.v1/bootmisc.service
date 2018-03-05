@@ -1,0 +1,22 @@
+[Unit]              
+SourcePath=/etc/init.d/bootmisc.sh
+Description=LSB: A sysV boot misc script
+After=local-fs.target 
+After=start_QCMAP_ConnectionManager_le.service
+
+Before=networking.service
+Before=multi-user.target
+
+[Service]       
+Environment="PATH=/usr/local/sbin:/usr/sbin:/usr/local/bin:/usr/bin:/bin:/sbin"
+Type=forking
+Restart=no
+TimeoutSec=5min
+IgnoreSIGPIPE=no
+KillMode=process
+GuessMainPID=no
+RemainAfterExit=yes
+ExecStart=/etc/init.d/bootmisc.sh
+
+[Install]
+WantedBy=multi-user.target

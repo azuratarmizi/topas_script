@@ -1,0 +1,27 @@
+[Unit]              
+SourcePath=/etc/init.d/syslog             
+Description=LSB: A sysV syslog script
+After=remote-fs.target 
+After=time-sync.target
+After=hwclock.service
+After=networking.service
+After=sshd.service
+Before=init_irsc_util.service
+Before=tftp_server.service
+Before=time_serviced.service
+Before=multi-user.target
+
+[Service]       
+Type=forking		
+Restart=no		
+TimeoutSec=5min		
+IgnoreSIGPIPE=no		
+KillMode=process		
+GuessMainPID=no		
+RemainAfterExit=yes		
+ExecStart=/etc/init.d/syslog start
+ExecStop=/etc/init.d/syslog stop
+
+[Install]
+WantedBy=multi-user.target
+

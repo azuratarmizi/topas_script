@@ -1,0 +1,24 @@
+[Unit]
+SourcePath=/etc/init.d/csdserver
+Description=LSB: A sysV start csdserver
+After=basic.target
+After=thermal-engine.service
+After=qmuxd.service
+Before=netmgrd.service
+Before=multi-user.target
+
+[Service]
+Environment="PATH=/usr/local/sbin:/usr/sbin:/usr/local/bin:/usr/bin:/bin:/sbin"
+Type=forking
+Restart=no
+TimeoutSec=5min
+IgnoreSIGPIPE=no
+KillMode=process
+GuessMainPID=no
+RemainAfterExit=yes
+ExecStart=/etc/init.d/csdserver start
+ExecStop=/etc/init.d/csdserver stop
+
+[Install]
+WantedBy=multi-user.target
+

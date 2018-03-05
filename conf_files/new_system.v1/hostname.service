@@ -1,0 +1,19 @@
+[Unit]              
+SourcePath=/etc/init.d/hostname.sh
+Description=LSB: A sysV setting hostname script
+After=dmesg.service
+Before=start_QCMAP_ConnectionManager_le.service                
+Before=multi-user.target
+
+[Service]       
+Type=forking
+Restart=no
+TimeoutSec=5min
+IgnoreSIGPIPE=no
+KillMode=process
+GuessMainPID=no
+RemainAfterExit=yes
+ExecStart=/etc/init.d/hostname.sh
+
+[Install]
+WantedBy=multi-user.target

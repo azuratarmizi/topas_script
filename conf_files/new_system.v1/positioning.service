@@ -1,0 +1,14 @@
+[Unit]
+Description=positioning component
+Requires=dbus.service
+After=systemmanager.service
+After=multi-user.target
+
+[Service]
+Type=notify
+ExecStart=/usr/bin/positioning -t/var/log/stdout_positioning.txt
+WatchdogSec=10
+TimeoutStartSec=5
+TimeoutStopSec=5
+#Restart=on-watchdog
+

@@ -1,0 +1,16 @@
+[Unit]
+Description=Start Session DBus
+Requires=dbus.service
+After=dbus.service
+After=stop-bootlogd.service
+Before=multi-user.target
+
+
+[Service]
+Type=forking
+ExecStart=/bin/sh -c 'dbus-launch --auto-syntax | sed -e "s/[;]//g" -e "/PID/d" -e "/export/d" > /var/tmp/dbus_session.conf'
+KillSignal=SIGKILL
+
+[Install]
+WantedBy=multi-user.target
+

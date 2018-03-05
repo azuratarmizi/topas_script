@@ -1,0 +1,23 @@
+[Unit]              
+SourcePath=/etc/init.d/networking
+Description=LSB: A sysV networking script
+After=local-fs.target 
+After=bootmisc.service
+Before=sshd.service
+Before=multi-user.target
+Requires=psmd.service
+
+[Service]       
+Environment="PATH=/usr/local/sbin:/usr/sbin:/usr/local/bin:/usr/bin:/bin:/sbin"	
+Type=forking	
+Restart=no	
+TimeoutSec=5min	
+IgnoreSIGPIPE=no	
+KillMode=process	
+GuessMainPID=no	
+RemainAfterExit=yes	
+ExecStart=/etc/init.d/networking start
+ExecStop=/etc/init.d/networking stop
+
+[Install]
+WantedBy=multi-user.target

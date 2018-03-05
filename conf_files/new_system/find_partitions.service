@@ -1,0 +1,23 @@
+[Unit]              
+SourcePath=/etc/init.d/find_partitions.sh
+Description=LSB: A sysV find and mount ubi partitions script
+After=local-fs.target 
+After=usb.service
+After=mdev.service
+Requires=mdev.service
+Before=populate-volatile.service
+Before=multi-user.target
+
+[Service]       
+Environment="PATH=/usr/local/sbin:/usr/sbin:/usr/local/bin:/usr/bin:/bin:/sbin"
+Type=forking	
+Restart=no	
+TimeoutSec=5min	
+IgnoreSIGPIPE=no	
+KillMode=process	
+GuessMainPID=no	
+RemainAfterExit=yes	
+ExecStart=/etc/init.d/find_partitions.sh
+
+[Install]
+WantedBy=multi-user.target

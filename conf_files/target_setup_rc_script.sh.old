@@ -1,0 +1,33 @@
+#!/bin/sh 
+
+cd /etc/rc3.d
+rm S15chgrp-diag
+rm S20tftp_server.sh
+rm S40thermal-engine
+rm S45csdserver
+rm S45qmi_shutdown_modemd
+rm S55reset_reboot_cookie
+rm S*start*
+rm S99avahi-dnsconfd
+
+
+cp -a ../rcS.d/* .              
+mv S01networking S51networking              
+mv S09sshd S59sshd              
+mv S20hwclock.sh S70hwclock.sh              
+mv S20syslog S70syslog              
+mv S29init_irsc_util S79init_irsc_util              
+mv S29time_serviced S79time_serviced                
+mv S40qmuxd S90qmuxd                
+mv S55bootmisc.sh S50bootmisc.sh                
+rm S40start_qti_le
+rm S38start_ipacmdiag_le
+rm S37start_ipacm_perf_le
+rm S37firmware-links.sh
+
+rm /etc/rcS.d/*
+
+
+ln -s /data/lg_topas_root/root/etc/machine-id /etc/machine-id
+
+

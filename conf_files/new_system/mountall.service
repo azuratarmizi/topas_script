@@ -1,0 +1,20 @@
+[Unit]              
+SourcePath=/etc/init.d/mountall.sh
+Description=LSB: A sysV mount dev script
+After=local-fs.target 
+After=mdev.service
+Before=alignment.service
+Before=multi-user.target
+
+[Service]       
+Type=forking		
+Restart=no		
+TimeoutSec=5min		
+IgnoreSIGPIPE=no		
+KillMode=process		
+GuessMainPID=no		
+RemainAfterExit=yes		
+ExecStart=/etc/init.d/mountall.sh
+
+[Install]
+WantedBy=multi-user.target

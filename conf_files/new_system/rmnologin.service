@@ -1,0 +1,20 @@
+[Unit]              
+SourcePath=/etc/init.d/rmnologin.sh
+Description=LSB: A sysV rmnologin.sh script
+After=remote-fs.target power_config.service
+Before=stop-bootlogd.service                
+Before=start_fs-scrub-daemon.service
+Before=multi-user.target
+
+[Service]       
+Type=forking
+Restart=no
+TimeoutSec=5min
+IgnoreSIGPIPE=no
+KillMode=process
+GuessMainPID=no
+RemainAfterExit=yes
+ExecStart=/etc/init.d/rmnologin.sh
+
+[Install]
+WantedBy=multi-user.target

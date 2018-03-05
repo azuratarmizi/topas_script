@@ -1,0 +1,17 @@
+[Unit]
+Description=MCU start sync up with modem status
+After=topas-dbus-session.service
+After=multi-user.target
+Before=systemmanager.service
+Before=data_call.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/mcu_modem_sync.sh
+StandardOutput=syslog+console
+StandardError=syslog+console
+
+
+[Install]
+WantedBy=multi-user.target
+

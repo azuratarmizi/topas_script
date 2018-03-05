@@ -1,0 +1,23 @@
+[Unit]              
+SourcePath=/etc/init.d/netmgrd             
+Description=LSB: A sysV qualcomm netwok manager daemon script
+After=basic.target 
+After=csdserver.service
+Before=qmi_shutdown_modemd.service
+Before=data-init.service
+Before=multi-user.target
+
+[Service]       
+Environment="PATH=/usr/local/sbin:/usr/sbin:/usr/local/bin:/usr/bin:/bin:/sbin"
+Type=forking
+Restart=no
+TimeoutSec=5min
+IgnoreSIGPIPE=no
+KillMode=process
+GuessMainPID=no
+RemainAfterExit=yes
+ExecStart=/etc/init.d/netmgrd start
+ExecStop=/etc/init.d/netmgrd stop
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,19 @@
+[Unit]              
+SourcePath=/etc/init.d/data-init
+Description=LSB: A sysV data-init script
+After=qmuxd.target
+Before=power_config.service
+Before=multi-user.target
+
+[Service]       
+Type=forking
+Restart=no
+TimeoutSec=5min
+IgnoreSIGPIPE=no
+KillMode=process
+GuessMainPID=no
+RemainAfterExit=yes
+ExecStart=/etc/init.d/data-init
+
+[Install]
+WantedBy=multi-user.target

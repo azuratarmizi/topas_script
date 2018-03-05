@@ -1,0 +1,22 @@
+[Unit]              
+SourcePath=/etc/init.d/thermal-engine
+Description=LSB: A sysV start thermal-engine
+After=basic.target 
+After=qmuxd.service
+Before=netmgrd.service
+Before=multi-user.target
+
+[Service]       
+Environment="PATH=/usr/local/sbin:/usr/sbin:/usr/local/bin:/usr/bin:/bin:/sbin"
+Type=forking
+Restart=no
+TimeoutSec=5min
+IgnoreSIGPIPE=no
+KillMode=process
+GuessMainPID=no
+RemainAfterExit=yes
+ExecStart=/etc/init.d/thermal-engine start
+ExecStop=/etc/init.d/thermal-engine stop
+
+[Install]
+WantedBy=multi-user.target

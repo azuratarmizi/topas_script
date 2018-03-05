@@ -1,0 +1,19 @@
+[Unit]              
+SourcePath=/etc/init.d/checkroot.sh              
+Description=LSB: A sysV  checkroot init script
+Before=multi-user.target 
+Before=bootlogd.service
+After=alignment.service
+
+[Service]       
+Type=forking
+TimeoutSec=5min	
+IgnoreSIGPIPE=no	
+KillMode=process	
+GuessMainPID=no	
+RemainAfterExit=yes	
+Restart=no      
+ExecStart=/etc/init.d/checkroot.sh
+
+[Install]
+WantedBy=multi-user.target

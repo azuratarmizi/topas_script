@@ -1,0 +1,24 @@
+[Unit]              
+SourcePath=/etc/init.d/time_serviced
+Description=LSB: A sysV qualcomm time_serviced script
+After=init_irsc_util.service
+After=syslog.service
+Before=mssboot.service
+Before=qmuxd.service
+Before=multi-user.target
+
+[Service]       
+Environment="PATH=/usr/local/sbin:/usr/sbin:/usr/local/bin:/usr/bin:/bin:/sbin" 
+Type=forking
+Restart=no
+TimeoutSec=5min
+IgnoreSIGPIPE=no
+KillMode=process
+GuessMainPID=no
+RemainAfterExit=yes
+ExecStart=/etc/init.d/time_serviced start
+ExecStop=/etc/init.d/time_serviced stop
+
+[Install]
+WantedBy=multi-user.target
+

@@ -1,0 +1,23 @@
+[Unit]              
+SourcePath=/etc/init.d/hwclock.sh
+Description=LSB: A sysV hw clock script
+After=local-fs.target 
+After=chgrp-diag.service
+Before=syslog.service
+Before=multi-user.target
+
+
+[Service]       
+Type=forking		
+Restart=no		
+TimeoutSec=5min		
+IgnoreSIGPIPE=no		
+KillMode=process		
+GuessMainPID=no		
+RemainAfterExit=yes		
+Environment="PATH=/usr/local/sbin:/usr/sbin:/usr/local/bin:/usr/bin:/bin:/sbin"
+ExecStart=/etc/init.d/hwclock.sh start
+ExecStop=/etc/init.d/hwclock.sh stop
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,21 @@
+[Unit]              
+SourcePath=/etc/init.d/init_irsc_util
+Description=LSB: A sysV init_irsc_util script
+After=syslog.service
+After=tftp_server.service
+Before=time_serviced.service
+Before=multi-user.target
+
+[Service]       
+Type=forking
+Restart=no
+TimeoutSec=5min
+IgnoreSIGPIPE=no
+KillMode=process
+GuessMainPID=no
+RemainAfterExit=yes
+ExecStart=/etc/init.d/init_irsc_util start
+ExecStop=/etc/init.d/init_irsc_util stop
+
+[Install]
+WantedBy=multi-user.target

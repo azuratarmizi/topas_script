@@ -1,0 +1,21 @@
+[Unit]              
+SourcePath=/etc/init.d/bootlogd             
+Description=LSB: A sysV bootlogd script
+After=local-fs.target 
+After=checkroot.service
+Before=read-only-rootfs-hook.service
+Before=multi-user.target
+
+[Service]       
+Type=forking
+Restart=no		
+TimeoutSec=5min		
+IgnoreSIGPIPE=no		
+KillMode=process		
+GuessMainPID=no		
+RemainAfterExit=yes		
+ExecStart=/etc/init.d/bootlogd start
+ExecStop=/etc/init.d/bootlogd stop
+
+[Install]
+WantedBy=multi-user.target

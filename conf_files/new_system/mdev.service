@@ -1,0 +1,20 @@
+[Unit]              
+SourcePath=/etc/init.d/mdev              
+Description=LSB: A sysV mount dev script
+After=local-fs.target 
+After=sysfs.service
+Before=mountall.service
+Before=multi-user.target
+
+[Service]       
+Type=forking	
+TimeoutSec=5min	
+IgnoreSIGPIPE=no	
+KillMode=process	
+GuessMainPID=no	
+RemainAfterExit=yes	
+Restart=no	
+ExecStart=/etc/init.d/mdev
+
+[Install]
+WantedBy=multi-user.target

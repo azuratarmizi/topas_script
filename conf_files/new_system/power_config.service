@@ -1,0 +1,22 @@
+[Unit]              
+SourcePath=/etc/init.d/power_config
+Description=LSB: A sysV power config script
+#After=dbus.service
+After=data-init.service
+Before=rmnologin.service
+Before=multi-user.target
+
+[Service]       
+Environment="PATH=/usr/local/sbin:/usr/sbin:/usr/local/bin:/usr/bin:/bin:/sbin"
+Type=forking
+Restart=no
+TimeoutSec=5min
+IgnoreSIGPIPE=no
+KillMode=process
+GuessMainPID=no
+RemainAfterExit=yes
+ExecStart=/etc/init.d/power_config start
+ExecStop=/etc/init.d/power_config stop
+
+[Install]
+WantedBy=multi-user.target
